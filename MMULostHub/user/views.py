@@ -1,4 +1,7 @@
 from django.shortcuts import render
 
 def beginning(request):
-    return render(request, 'beginning.html')
+    return render(request, 'user/beginning.html')
+
+def user_login(request):
+    return render(request, 'user/user-login.html')
