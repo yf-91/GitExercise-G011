@@ -8,20 +8,23 @@ body{
 
 header{
     margin: 0;
-    height: 60px;
+    height: 80px;
     width: 100%;
     background: transparent;
+    display: flex;
+    align-items: center;
 }
 
 .mmu-logo{
     height: 60px;
     width: auto;
     text-align: left;
+    padding-left: 10px;
 }
 
 .web-logo{
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     height: 500px;
 }
@@ -36,4 +39,19 @@ nav{
     justify-content: flex-end;
     gap: 20px;
     padding: 20px;
+}
+
+nav a{
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    background: #72788A;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+nav a:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
