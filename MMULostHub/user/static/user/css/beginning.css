@@ -1,0 +1,39 @@
+body{
+    margin: 0;
+    background: linear-gradient(225deg, #CED8D4, #CED8D4, #D9E7FD, #B5D1FA, #72788A);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+header{
+    margin: 0;
+    height: 60px;
+    width: 100%;
+    background: transparent;
+}
+
+.mmu-logo{
+    height: 60px;
+    width: auto;
+    text-align: left;
+}
+
+.web-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+
+.losthub-logo{
+    height: 500px;
+    width: auto;
+}
+
+nav{
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    padding: 20px;
+}
