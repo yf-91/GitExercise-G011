@@ -24,15 +24,17 @@ header{
 
 .banner{
     display: flex;
-    align-items: center;
+    align-items: top;
     justify-content: center;
-    gap: 50px;
+    gap: 0px;
     height: 500px;
-    padding: 0 20px;
+    padding: 20px;
 }
 .web-logo{
     display: flex;
     justify-content: left;
+    position: fixed;
+    left: 20px;
     align-items: center;
     height: 500px;
 }
@@ -45,13 +47,17 @@ header{
 .slogan{
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
-    padding: 20px 30px;
+    padding: 50px 2px 10px 2px;
     border-radius: 20px;
+    position: fixed;
+    right: 200px;
 }
 
 .slogan p {
-    font-size: 28px;
+    font-size: 20px;
     font-weight: bold;
+    line-height: 1;
+    text-align: center;
     transform: rotate(-1deg);
     transition: transform 0.3s ease, color 0.3s ease;
     color: #333;
