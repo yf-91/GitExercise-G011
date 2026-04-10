@@ -17,15 +17,19 @@
         </div>
 
         <div class="slogan">
-            <p>What's lost can be found,<br>
-            and found can find its way back.</p>
+            <p>
+                What's lost can be found,<br>
+            and found can find its way back.
+            </p>
+
+            <nav>
+                <a href="{% url 'user-login' %}">User Login</a>
+                <a href="{% url 'admin-login' %}">Admin Login</a>
+                <a href="{% url 'user-register' %}">Register</a>
+            </nav>
         </div>
     </div>
-    
-    <nav>
-        <a href="#">User Login</a>
-        <a href="#">Admin Login</a>
-        <a href="#">Register</a>
-    </nav>
+
+
 </body>
 </html>
