@@ -12,24 +12,26 @@
             <img src="{% static 'images/MMU Logo.png' %}" alt="MMU Logo" class="mmu-logo">
         </header>
 
-        <div class="banner">
-            <div class="web-logo">
-                <img src="{% static 'images/Web Logo.png' %}" alt="MMU Lost Hub Logo" class="losthub-logo">
-            </div>
+        <div class="content">
+            <div class="banner">
+                <div class="web-logo">
+                    <img src="{% static 'images/Web Logo.png' %}" alt="MMU Lost Hub Logo" class="losthub-logo">
+                </div>
 
-            <div class="slogan">
-                <p>
-                    What's lost can be found,<br>
-                and found can find its way back.
-                </p>
+                <div class="slogan">
+                    <p>
+                        What's lost can be found,<br>
+                    and found can find its way back.
+                    </p>
 
-                <nav>
-                    <div class="beginning-page-action-button">
-                        <a href="{% url 'user-login' %}">User Login</a>
-                        <a href="{% url 'admin-login' %}">Admin Login</a>
-                        <a href="{% url 'register' %}">Register</a>
-                    </div>
-                </nav>
+                    <nav>
+                        <div class="beginning-page-action-button">
+                            <a href="{% url 'user-login' %}">User Login</a>
+                            <a href="{% url 'admin-login' %}">Admin Login</a>
+                            <a href="{% url 'register' %}">Register</a>
+                        </div>
+                    </nav>
+                </div>
             </div>
         </div>
 
