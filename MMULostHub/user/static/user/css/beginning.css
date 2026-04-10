@@ -33,8 +33,6 @@ header{
 .web-logo{
     display: flex;
     justify-content: left;
-    position: fixed;
-    left: 20px;
     align-items: center;
     height: 500px;
 }
@@ -47,8 +45,7 @@ header{
 .slogan{
     padding: 40px 2px 10px 2px;
     border-radius: 20px;
-    position: fixed;
-    right: 200px;
+    margin-right: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,16 +53,12 @@ header{
 
 .slogan p {
     font-size: 20px;
-    text-shadow: 
-        1px 1px 0 #5f6675,
-        2px 0px 0 #4a5160,
-        3px 0 5px rgba(0,0,0,0.4);
     font-weight: bold;
     line-height: 1;
     text-align: center;
     transform: rotate(-1deg);
     transition: all 0.35s ease;
-    color: #B5D1FA;
+    color: black;
 }
 
 .slogan p:hover {
@@ -85,6 +78,8 @@ nav{
 }
 
 nav a{
+    width: 100px;
+    text-align: center;
     text-decoration: none;
     padding: 10px 25px;
     border-radius: 25px;
@@ -97,4 +92,26 @@ nav a{
 nav a:hover{
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    background: white;
+    color: #72788A;
+}
+
+.beginning-page-action-button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-top: 50px;
+}
+
+footer{
+    margin: 0;
+    height: 120px;
+    background: rgba(0,0,0,0.2);
+    text-align: center;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
 }
