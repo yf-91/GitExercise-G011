@@ -8,6 +8,12 @@ body{
     background-attachment: fixed;
 }
 
+.whole-page{
+    min-height: 100wh;
+    display: flex;
+    flex-direction: column;
+}
+
 header{
     margin: 0;
     height: 80px;
@@ -100,8 +106,9 @@ nav a{
     border-radius: 25px;
     background: #72788A;
     color: white;
-    font-weight: bold;
     transition: all 0.3s ease;
+    font-family: 'Slackey';
+    font-size: 14px;
 }
 
 nav a:hover{
