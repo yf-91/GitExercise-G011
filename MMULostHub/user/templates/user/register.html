@@ -38,16 +38,40 @@
                         
                         <input type="password" id="password"name="password" placeholder="Password" oninput="checkStrength()">
                         <p style="color:red;">{{ password_error }}</p>
-
+                        
+                        <!-- Strength Bar -->
                         <div class="strength-bar">
                             <div id="strength"></div>
                         </div>
 
                         <p id="strength-text"></p>
 
+                        <!-- Checklist -->
+                        <div class="checklist">
+                            <p id="letter" class="invalid">✖ At least 1 letter</p>
+                            <p id="number" class="invalid">✖ At least 1 number</p>
+                            <p id="symbol" class="invalid">✖ At least 1 symbol (@#$*.)</p>
+                            <p id="length" class="invalid">✖ At least 8 characters</p>
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" oninput="checkMatch()"><br>
+                        
+                        <p id="match-text"></p>
+
                         <script>
                             function checkStrength() {
-                                
+                                let password = document.getElementById("password").value;
+
+                                let bar = document.getElementById("strength-fill");
+                                let text = document.getElementById("strength-text");
+
+                                let letter = document.getElementById("letter");
+                                let number = document.getElementById("number");
+                                let symbol = document.getElementById("symbol");
+                                let length = document.getElementById("length");
+
+                                let strength = 0;
                             }
                         </script>
 
