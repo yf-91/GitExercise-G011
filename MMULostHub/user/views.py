@@ -1,4 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+import re
 
 def beginning(request):
     return render(request, 'user/beginning.html')
@@ -10,4 +14,61 @@ def admin_login(request):
     return render(request, 'user/admin-login.html')
 
 def register(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+
+        name_error = ""
+        email_error = ""
+        password_error = ""
+        confirm_password_error = ""
+
+        if not name:
+            name_error = "Please enter your name."
+
+        if not email:
+            email_error = "Please enter your MMU email."
+        elif not (
+            re.match(r'^[A-Za-z0-9._%+-]+@mmu\.edu\.my$',email)
+            or
+            re.match(r'^[A-Za-z0-9._%+-]+@student\.mmu\.edu\.my$',email)
+        ):
+            email_error = "Please enter a valid MMU email."
+
+        elif User.objects.filter(username=email).exists():
+            email_error = "Email already registered."
+
+        if not password:
+            password_error = "please enter a password."
+        else:
+            if len(password) <8:
+                password_error = "Password must be at least 8 characters."
+            elif not re.search(r"[A-Za-z]", password):
+                password_error = "Password must contain letters."
+            elif not re.search(r"[0-9]", password):
+                password_error = "Password must contain numbers."
+            elif not re.search(r"[@#$*.]", password):
+                password_error = "Password must contain special symbol (@#$*.)."
+
+        if name_error or email_error or password_error or confirm_password_error:
+            return render(request, 'user/register.html', {
+                'name_error': name_error,
+                'email_error': email_error,
+                'password_error': password_error,
+                'confirm_password_error': confirm_password_error,
+                'name': name,
+                'email': email,
+            })
+        
+        user = User.objects.create_user(
+            username=email,
+            email=email,
+            password=password
+        )
+
+        messages.success(request, "Account created successfully!")
+        return redirect('user-login')
+    
     return render(request, 'user/register.html')
