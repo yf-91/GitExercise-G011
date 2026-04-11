@@ -72,6 +72,53 @@
                                 let length = document.getElementById("length");
 
                                 let strength = 0;
+
+                                // Strength Bar
+                                let percent = (strength / 4) * 100;
+                                bar.style.width = percent + "%";
+
+                                if (strength <= 1) {
+                                    bar.style.background = "red";
+                                    text.innerHTML = "Weak";
+                                    text.style.color = "red";
+                                }
+                                else if (strength == 2) {
+                                    bar.style.background = "orange";
+                                    text.innerHTML = "Medium";
+                                    text.style.color = "orange";
+                                }
+                                else if (strength == 3) {
+                                    bar.style.background = "yellowgreen";
+                                    text.innerHTML = "Good";
+                                    text.style.color = "yellowgreen";
+                                }
+                                else if (strength == 4) {
+                                    bar.style.background = "green";
+                                    text.innerHTML = "Strong";
+                                    text.style.color = "green";
+                                }
+
+                                // Update match check live
+                                checkMatch();
+                            }
+
+                            function checkMatch() {
+                                let password = document.getElementById("password").value;
+                                let confirm = document.getElementById("confirm_password").value;
+                                let text = document.getElementById("match-text");
+
+                                if(confirm.length === 0) {
+                                    text.innerHTML = "";
+                                    return;
+                                }
+
+                                if (password === confirm) {
+                                    text.innerHTML = "Password match";
+                                    text.style.color = "green";
+                                }else {
+                                    text.innerHTML = "Password do not match";
+                                    text.style.color = "red";
+                                }
                             }
                         </script>
 
