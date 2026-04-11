@@ -41,7 +41,7 @@ def register(request):
             email_error = "Email already registered."
 
         if not password:
-            password_error = "please enter a password."
+            password_error = "Please enter a password."
         else:
             if len(password) <8:
                 password_error = "Password must be at least 8 characters."
@@ -51,6 +51,11 @@ def register(request):
                 password_error = "Password must contain numbers."
             elif not re.search(r"[@#$*.]", password):
                 password_error = "Password must contain special symbol (@#$*.)."
+
+        if not confirm_password:
+            confirm_password_error = "Please confirm your password."
+        elif password != confirm_password:
+            confirm_password_error = "Passwords don't match."
 
         if name_error or email_error or password_error or confirm_password_error:
             return render(request, 'user/register.html', {
@@ -69,6 +74,6 @@ def register(request):
         )
 
         messages.success(request, "Account created successfully!")
-        return redirect('user-login')
+        return redirect('user_login')
     
     return render(request, 'user/register.html')

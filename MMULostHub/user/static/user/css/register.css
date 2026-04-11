@@ -1,0 +1,28 @@
+.valid {
+    color: green;
+    font-weight: bold;
+}
+
+.invalid {
+    color: red;
+}
+
+.checklist p {
+    transition: 0.2s;
+}
+
+.checklist p.valid {
+    color: green;
+}
+
+.checklist p.invalid {
+    color: red;
+}
+
+.valid::before {
+    content: "✔ ";
+}
+
+.invalid::before {
+    content: "✖ ";
+}
