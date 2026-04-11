@@ -36,22 +36,28 @@
                         <input type="email" name="email" placeholder="MMU Email" value="{{ email }}">
                         <p style="color:red;">{{ email_error }}</p>
                         
-                        <input type="password" id="password"name="password" placeholder="Password" oninput="checkPassword()">
-                        <p style="color:red;">{{ password_error }}</p>
+                        <div class="password">
+                            <input type="password" id="password"name="password" placeholder="Password" oninput="checkPassword()">
+                            <span class="show-password" onclick="showPassword()" id="showEye"></span>
+                            <p style="color:red;">{{ password_error }}</p>
+                        </div>
 
                         <p id="strength-text"></p>
 
                         <!-- Checklist -->
                         <div class="checklist">
-                            <p id="letter" class="invalid">✖ At least 1 letter</p>
-                            <p id="number" class="invalid">✖ At least 1 number</p>
-                            <p id="symbol" class="invalid">✖ At least 1 symbol (@#$*.)</p>
-                            <p id="length" class="invalid">✖ At least 8 characters</p>
+                            <p id="letter" class="invalid">At least 1 letter</p>
+                            <p id="number" class="invalid">At least 1 number</p>
+                            <p id="symbol" class="invalid">At least 1 symbol (@#$*.)</p>
+                            <p id="length" class="invalid">At least 8 characters</p>
                         </div>
 
                         <!-- Confirm Password -->
-                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" oninput="checkPassword()"><br>
-                        <p style="color:red;">{{ confirm_password_error }}</p>
+                        <div class="password">
+                            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" oninput="checkPassword()">
+                            <span class="show-password" onclick="showPassword()" id="showEye"></span>
+                            <p style="color:red;">{{ confirm_password_error }}</p>
+                        </div>
 
                         <p id="match-text"></p>
 
@@ -143,12 +149,6 @@
                         console.log("running");
                         </script>
 
-                        {% if messages %}
-                            {% for message in messages %}
-                                <p style="color:green;">{{ message }}</p>
-                            {% endfor %}
-                        {% endif %}
-
                         <script>
                             function togglePassword() {
                                 const pw = document.getElementById("password");
@@ -157,8 +157,33 @@
                                 pw.type = pw.type =="password" ? "text" : "password";
                                 cpw.type = cpw.type =="password" ? "text" : "password";
                             }
+
                         console.log("running");
                         </script>
+
+                        <script>
+                            function showPassword() {
+                                const pw = document.getElementById("password");
+                                const cpw = document.getElementById("confirm_password");
+                                const eye = document.getElementById("showEye");
+
+                                if (pw.type === "password") {
+                                    pw.type = "text";
+                                    cpw.type = "text";
+                                } else {
+                                   pw.type = "password";
+                                   cpw.type = "password";
+                                }
+                            }
+                            
+                            console.log("running");
+                        </script>
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p style="color:green;">{{ message }}</p>
+                            {% endfor %}
+                        {% endif %}
 
                         <button type="submit" id="submitBtn" disabled>Register</button>
                     </form>
