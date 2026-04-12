@@ -8,23 +8,27 @@
 }
 
 .checklist p {
+    position: relative;
+    padding-left: 20px;
     transition: 0.2s;
 }
 
-.checklist p.valid {
-    color: green;
-}
-
-.checklist p.invalid {
-    color: red;
-}
-
-.valid::before {
-    content: "✔ ";
-}
-
-.invalid::before {
+.checklist p.invalid::before {
     content: "✖ ";
+    position: absolute;
+    left: 0;
+}
+
+.checklist p[style*="green"]::before {
+    content: "✔ ";
+    position: absolute;
+    left: 0;
+}
+
+.checklist p[style*="red"]::before {
+    content: "✖ ";
+    position: absolute;
+    left: 0;
 }
 
 .show-password {
