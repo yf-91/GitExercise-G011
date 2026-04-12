@@ -29,52 +29,19 @@
 
                     <form method="POST">
                         {% csrf_token %}
-
+                        <!--Name-->
                         <input type="text" name="name" placeholder="Name" value="{{ name }}">
                         <p style="color:red;">{{ name_error }}</p>
-
+                        <!--Email-->
                         <input type="email" id="email" name="email" placeholder="MMU Email" oninput="checkEmail()">
-                        <p style="color:red;">{{ email_error }}</p>
-
                         <p id="email-status"></p>
-
-                        <script>
-                            function checkEmail() {
-                                let email = document.getElementById("email").value;
-                                let status = document.getElementById("email-status");
-                                let submitBtn = document.getElementById("submitBtn");
-
-                                if (email.length === 0) {
-                                    status.innerHTML = "";
-                                    return;
-                                }
-
-                                fetch(`/check-email/?email=${email}`)
-                                .then(response => response.json())
-                                .then(data => {
-                                    if (data.exists) {
-                                        status.innerHTML = "Email already exists";
-                                        status.style.color = "red";
-                                        submitBtn.disabled = true;
-                                    } else {
-                                        status.innerHTML = "Email available";
-                                        status.style.color = "green";
-                                        submitBtn.disabled = false;
-                                    }
-                                });
-                            }
-
-                        console.log("running");
-                        </script>
-
-                        <div class="password">
-                            <input type="password" id="password"name="password" placeholder="Password" oninput="checkPassword()">
-                            <span class="show-password" onclick="showPassword('password', this)">👀</span>
-                            <p style="color:red;">{{ password_error }}</p>
+                        <p style="color:red;">{{ email_error }}</p>
+                        <!--Password-->
+                        <div class="password-box">
+                            <input type="password" id="password" name="password" placeholder="Password" oninput="checkPassword()">
+                            <span class="show-password" onclick="showPassword('password', this)">🙈</span>
                         </div>
-
-                        <p id="strength-text"></p>
-
+                        <p style="color:red;">{{ password_error }}</p>
                         <!-- Checklist -->
                         <div class="checklist">
                             <p id="letter" class="invalid">At least 1 letter</p>
@@ -84,118 +51,13 @@
                         </div>
 
                         <!-- Confirm Password -->
-                        <div class="password">
+                        <div class="password-box">
                             <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" oninput="checkPassword()">
-                            <span class="show-password" onclick="showPassword('confirm_password', this)">👀</span>
-                            <p style="color:red;">{{ confirm_password_error }}</p>
+                            <span class="show-password" onclick="showPassword('confirm_password', this)">🙈</span>
                         </div>
-
                         <p id="match-text"></p>
-
-                        <script>
-                            function checkPassword() {
-                                let password = document.getElementById("password").value;
-                                let confirm = document.getElementById("confirm_password").value;
-
-                                let letter = document.getElementById("letter");
-                                let number = document.getElementById("number");
-                                let symbol = document.getElementById("symbol");
-                                let length = document.getElementById("length");
-                                let matchText = document.getElementById("match-text");
-                                let submitBtn = document.getElementById("submitBtn");
-                                
-                                let validCount = 0;
-
-                                // letter
-                                if (/[A-Za-z]/.test(password)) {
-                                    letter.classList.add("valid");
-                                    letter.classList.remove("invalid");
-                                    letter.innerHTML = "At least 1 letter";
-                                    validCount++;
-                                } else {
-                                    letter.classList.add("invalid");
-                                    letter.classList.remove("valid");
-                                    letter.innerHTML = "At least 1 letter";
-                                }
-
-                                //number
-                                if (/[0-9]/.test(password)) {
-                                    number.classList.add("valid");
-                                    number.classList.remove("invalid");
-                                    number.innerHTML = "At least 1 number";
-                                    validCount++;
-                                } else {
-                                    number.classList.add("invalid");
-                                    number.classList.remove("valid");
-                                    number.innerHTML = "At least 1 number";
-                                }
-
-                                //symbol
-                                if (/[@#$*.]/.test(password)) {
-                                    symbol.classList.add("valid");
-                                    symbol.classList.remove("invalid");
-                                    symbol.innerHTML = "At least 1 symbol (@#$*.)";
-                                    validCount++;
-                                } else {
-                                    symbol.classList.add("invalid");
-                                    symbol.classList.remove("valid");
-                                    symbol.innerHTML = "At least 1 symbol (@#$*.)";
-                                }
-
-                                //length
-                                if (password.length >= 8) {
-                                    length.classList.add("valid");
-                                    length.classList.remove("invalid");
-                                    length.innerHTML = "At least 8 characters";
-                                    validCount++;
-                                } else {
-                                    length.classList.add("invalid");
-                                    length.classList.remove("valid");
-                                    length.innerHTML = "At least 8 characters";
-                                }
-
-                                //Confirm Password
-                                let match = false;
-                                if (confirm.length > 0) {
-                                    if (password === confirm) {
-                                        matchText.innerHTML = "Password match";
-                                        matchText.style.color = "green";
-                                        match = true;
-                                    } else {
-                                        matchText.innerHTML = "Password don't match";
-                                        matchText.style.color = "red";
-                                    }
-                                } else {
-                                    matchText.innerHTML = "";
-                                }
-
-                            //Enable Button only if All Valid
-                            if (validCount === 4 && match) {
-                                submitBtn.disabled = false;
-                            } else {
-                                submitBtn.disabled = true;
-                            }
-                        }
-
-                        console.log("running");
-                        </script>
-
-                        <script>
-                            function showPassword(inputId, showPasswordIcon) {
-                                const input = document.getElementById(inputId);
-
-                                if (input.type === "password") {
-                                    input.type = "text";
-                                    showPasswordIcon.textContent = "👀";
-                                } else {
-                                    input.type = "password";
-                                    showPasswordIcon.textContent = "👀";
-                                }
-                            }
-                            
-                        console.log("running");
-                        </script>
-
+                        <p style="color:red;">{{ confirm_password_error }}</p>
+                        
                         {% if messages %}
                             {% for message in messages %}
                                 <p style="color:green;">{{ message }}</p>
@@ -203,6 +65,7 @@
                         {% endif %}
 
                         <button type="submit" id="submitBtn" disabled>Register</button>
+
                     </form>
 
                     <p>Don't have an account?</p>
@@ -216,5 +79,131 @@
             <br>Designed by:<br>Kho Yee Theng<br>Tan Yun Fee<br>Lim Tze Ying</p>
         </footer>
     </div>
+
+    <script>
+        let emailValid = false;
+        let passwordValid = false;
+        let match = false;
+
+        const submitBtn = document.getElementById("submitBtn");
+        /*----------Email----------*/
+        let emailTimeout;
+        let currentEmail = "";
+
+            function checkEmail() {
+                clearTimeout(emailTimeout);
+
+                let email = document.getElementById("email").value.trim();
+                let status = document.getElementById("email-status");
+
+                currentEmail = email;
+                    
+                if (!email) {
+                        status.innerHTML = "";
+                        emailValid = false;
+                        updateButton();
+                        return;
+                }
+
+                status.innerHTML = "Checking...";
+                status.style.color = "gray";
+
+                emailTimeout = setTimeout(() => {
+                    fetch(`/check-email/?email=${encodeURIComponent(email)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (email !== currentEmail) return;
+
+                        if (data.exists) {
+                            status.innerHTML = "Email already exists";
+                            status.style.color = "red";
+                            emailValid = false;
+                        } else {
+                            status.innerHTML = "Email available";
+                            status.style.color = "green";
+                            emailValid = true;
+                        }
+
+                        updateButton()
+                    });
+                }, 300);
+            }
+        /*----------Password----------*/
+        function checkPassword() {
+            let password = document.getElementById("password").value;
+            let confirm = document.getElementById("confirm_password").value;
+            
+            let validCount = 0;
+
+            /* letter */
+            if (/[A-Za-z]/.test(password)) {
+                document.getElementById("letter").style.color = "green";
+                validCount++;
+            } else {
+                document.getElementById("letter").style.color = "red";
+            }
+
+            /* number */
+            if (/[0-9]/.test(password)) {
+                document.getElementById("number").style.color = "green";
+                validCount++;
+            } else {
+                document.getElementById("number").style.color = "red";
+            }
+
+            /* symbol */
+            if (/[@#$*.]/.test(password)) {
+                document.getElementById("symbol").style.color = "green";
+                validCount++;
+            } else {
+                document.getElementById("symbol").style.color = "red";
+            }
+
+            /* length */
+            if (password.length >= 8) {
+                document.getElementById("length").style.color = "green";
+                validCount++;
+            } else {
+                document.getElementById("length").style.color = "red";
+            }
+
+            passwordValid = (validCount === 4);
+            /* Confirm Password */
+            if (!confirm.length) {
+                match = false;
+                document.getElementById("match-text").innerHTML = "";
+                updateButton();
+                return;
+            }
+
+            if (password === confirm) {
+                document.getElementById("match-text").innerHTML = "Password match";
+                document.getElementById("match-text").style.color = "green";
+                match = true;
+            } else {
+                document.getElementById("match-text").innerHTML = "Password not match";
+                document.getElementById("match-text").style.color = "red";
+                match = false;
+            }
+
+            updateButton();
+        }
+        /* Show Password Button */
+        function showPassword(inputId, icon) {
+            const input = document.getElementById(inputId);
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.textContent = "🙉";
+            } else {
+                input.type = "password";
+                icon.textContent = "🙈";
+            }
+        }
+        /* Button Control */
+        function updateButton() {
+            submitBtn.disabled =!(emailValid && passwordValid && match);
+        }
+    </script>
 </body>
 </html>
