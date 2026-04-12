@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -77,3 +78,12 @@ def register(request):
         return redirect('user_login')
     
     return render(request, 'user/register.html')
+
+def check_email(request):
+    email = request.GET.get('email')
+
+    exists = User.objects.filter(username=email).exists()
+
+    return JsonResponse({
+        'exists': exists
+    })

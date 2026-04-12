@@ -33,12 +33,43 @@
                         <input type="text" name="name" placeholder="Name" value="{{ name }}">
                         <p style="color:red;">{{ name_error }}</p>
 
-                        <input type="email" name="email" placeholder="MMU Email" value="{{ email }}">
+                        <input type="email" id="email" name="email" placeholder="MMU Email" oninput="checkEmail()">
                         <p style="color:red;">{{ email_error }}</p>
-                        
+
+                        <p id="email-status"></p>
+
+                        <script>
+                            function checkEmail() {
+                                let email = document.getElementById("email").value;
+                                let status = document.getElementById("email-status");
+                                let submitBtn = document.getElementById("submitBtn");
+
+                                if (email.length === 0) {
+                                    status.innerHTML = "";
+                                    return;
+                                }
+
+                                fetch(`/check-email/?email=${email}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.exists) {
+                                        status.innerHTML = "Email already exists";
+                                        status.style.color = "red";
+                                        submitBtn.disabled = true;
+                                    } else {
+                                        status.innerHTML = "Email available";
+                                        status.style.color = "green";
+                                        submitBtn.disabled = false;
+                                    }
+                                });
+                            }
+
+                        console.log("running");
+                        </script>
+
                         <div class="password">
                             <input type="password" id="password"name="password" placeholder="Password" oninput="checkPassword()">
-                            <span class="show-password" onclick="showPassword()" id="showEye"></span>
+                            <span class="show-password" onclick="showPassword('password', this)">👀</span>
                             <p style="color:red;">{{ password_error }}</p>
                         </div>
 
@@ -55,7 +86,7 @@
                         <!-- Confirm Password -->
                         <div class="password">
                             <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" oninput="checkPassword()">
-                            <span class="show-password" onclick="showPassword()" id="showEye"></span>
+                            <span class="show-password" onclick="showPassword('confirm_password', this)">👀</span>
                             <p style="color:red;">{{ confirm_password_error }}</p>
                         </div>
 
@@ -150,33 +181,19 @@
                         </script>
 
                         <script>
-                            function togglePassword() {
-                                const pw = document.getElementById("password");
-                                const cpw = document.getElementById("confirm_password");
+                            function showPassword(inputId, showPasswordIcon) {
+                                const input = document.getElementById(inputId);
 
-                                pw.type = pw.type =="password" ? "text" : "password";
-                                cpw.type = cpw.type =="password" ? "text" : "password";
-                            }
-
-                        console.log("running");
-                        </script>
-
-                        <script>
-                            function showPassword() {
-                                const pw = document.getElementById("password");
-                                const cpw = document.getElementById("confirm_password");
-                                const eye = document.getElementById("showEye");
-
-                                if (pw.type === "password") {
-                                    pw.type = "text";
-                                    cpw.type = "text";
+                                if (input.type === "password") {
+                                    input.type = "text";
+                                    showPasswordIcon.textContent = "👀";
                                 } else {
-                                   pw.type = "password";
-                                   cpw.type = "password";
+                                    input.type = "password";
+                                    showPasswordIcon.textContent = "👀";
                                 }
                             }
                             
-                            console.log("running");
+                        console.log("running");
                         </script>
 
                         {% if messages %}
@@ -189,7 +206,7 @@
                     </form>
 
                     <p>Don't have an account?</p>
-                    <a href="{% url 'register' %}">Register Here</a>
+                    <a href="{% url 'user-login' %}">Login Here</a>
                 </div>
             </div>
         </div>

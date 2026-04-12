@@ -27,20 +27,17 @@
     content: "✖ ";
 }
 
-.password {
-    position: relative;
-    width: 100%;
-}
-
-.password input{
-    width: 100%;
-    padding-right: 40px;
-}
-
-.show-password{
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+.show-password {
     cursor: pointer;
+    user-select: none;
+}
+
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-textfield-decoration-container {
+    display: none !important;
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
 }
