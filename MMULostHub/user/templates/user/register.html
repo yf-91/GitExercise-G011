@@ -35,7 +35,7 @@
                         <!--Email-->
                         <input type="email" id="email" name="email" placeholder="MMU Email" oninput="checkEmail()">
                         <p id="email-status"></p>
-                        <p style="color:red;">{{ email_error }}</p>
+                        <p id="email_error" style="color:red;">{{ email_error }}</p>
                         <!--Password-->
                         <div class="password-box">
                             <input type="password" id="password" name="password" placeholder="Password" oninput="checkPassword()">
@@ -95,7 +95,9 @@
 
                 let email = document.getElementById("email").value.trim();
                 let status = document.getElementById("email-status");
-
+                let errorText = document.getElementById("email_error");
+                if (errorText) errorText.innerHTML = "";
+                
                 currentEmail = email;
                     
                 if (!email) {
