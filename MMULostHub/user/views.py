@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
 import re
 
 def beginning(request):
@@ -42,8 +41,11 @@ def register(request):
 
         if not password:
             password_error = "Please enter a password."
+        
+        if not confirm_password:
+            confirm_password_error = "Please confirm ypur password."
         elif password != confirm_password:
-            confirm_password_error = "Password don't match."
+            confirm_password_error = "Passwords do not match."
 
         if name_error or email_error or password_error or confirm_password_error:
             return render(request, 'user/register.html', {

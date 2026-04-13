@@ -33,15 +33,20 @@
                         <input type="text" name="name" placeholder="Name" value="{{ name }}">
                         <p style="color:red;">{{ name_error }}</p>
                         <!--Email-->
-                        <input type="email" id="email" name="email" placeholder="MMU Email" oninput="checkEmail()">
+                        <input type="text" id="email" name="email" placeholder="MMU Email" oninput="checkEmail()">
                         <p id="email-status"></p>
-                        <p id="email_error" style="color:red;">{{ email_error }}</p>
+                        {% if email_error %}
+                            <p style="color:red;">{{ email_error }}</p>
+                        {% endif %}
                         <!--Password-->
                         <div class="password-box">
                             <input type="password" id="password" name="password" placeholder="Password" oninput="checkPassword()">
                             <span class="show-password" onclick="showPassword('password', this)">🙈</span>
                         </div>
+                        {% if password_error %}
                         <p style="color:red;">{{ password_error }}</p>
+                        {% endif %}
+
                         <!-- Checklist -->
                         <div class="checklist">
                             <p id="letter" class="invalid">At least 1 letter</p>
@@ -56,12 +61,8 @@
                             <span class="show-password" onclick="showPassword('confirm_password', this)">🙈</span>
                         </div>
                         <p id="match-text"></p>
+                        {% if confirm_password_error %}
                         <p style="color:red;">{{ confirm_password_error }}</p>
-                        
-                        {% if messages %}
-                            {% for message in messages %}
-                                <p style="color:green;">{{ message }}</p>
-                            {% endfor %}
                         {% endif %}
 
                         <button type="submit" id="submitBtn" disabled>Register</button>
@@ -95,22 +96,33 @@
 
                 let email = document.getElementById("email").value.trim();
                 let status = document.getElementById("email-status");
-                let errorText = document.getElementById("email_error");
-                if (errorText) errorText.innerHTML = "";
                 
                 currentEmail = email;
-                    
-                if (!email) {
-                        status.innerHTML = "";
-                        emailValid = false;
-                        updateButton();
-                        return;
-                }
 
-                status.innerHTML = "Checking...";
+                status.innerHTML = "";
+                emailValid = false;
+                updateButton();
+
+                if (!email) return;
+
+                if (!email.includes("@")) return;
+
+                status.innerHTML = "Typing...";
                 status.style.color = "gray";
 
                 emailTimeout = setTimeout(() => {
+
+                    let pattern = /^[A-Za-z0-9._%+-]+@(mmu\.edu\.my|student\.mmu\.edu\.my)$/;
+                    
+                    if (!pattern.test(email)) {
+                        status.innerHTML = "Invalid email format";
+                        status.style.color = "red";
+                        return;
+                    }
+                    
+                    status.innerHTML = "Checking...";
+                    status.style.color = "gray";
+
                     fetch(`/check-email/?email=${encodeURIComponent(email)}`)
                     .then(response => response.json())
                     .then(data => {
@@ -128,7 +140,7 @@
 
                         updateButton()
                     });
-                }, 300);
+                }, 1000);
             }
         /*----------Password----------*/
         function checkPassword() {
