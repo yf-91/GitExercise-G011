@@ -62,7 +62,7 @@ def register(request):
             password=password
         )
 
-        return redirect('user_login')
+        return redirect('user-login')
     
     return render(request, 'user/register.html')
 
