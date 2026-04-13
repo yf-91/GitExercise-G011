@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="'UTF-8">
-        <tittle>MMU Lost Hub - Feedback</tittle>
+        <title>MMU Lost Hub - Feedback</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -15,13 +15,17 @@
             <main>
                 <section class="feedback-section">
                     <h2>Feedback / Report</h2>
-                    <p>Leave your comments / suggestions here</p>
+                    <p>Leave your comments / suggestions here!</p>
 
                     <form id="FeedbackForm">
                         <label for="comments">Your feedback:</label>
+                        <textarea id="comments"  name="comments" placeholder="Please enter your feedback here..." rows="10"></textarea>
 
-                        <textarea id="comments"  name="comments" placeholder="Please enter your feedback here..." row="10">
-                        </textarea>
+                        <div class="upload-group" style="margin-top: 15px;">
+                            <label for="image-upload">Upload Image (optional):</label>
+                            <input type="file" id="image-upload" name="image-upload" accept="image/*">
+                        </div> 
+
                         <div class="button-group">
                             <button type="submit" class="submit-btn">Submit</button>
                         </div>
