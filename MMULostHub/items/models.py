@@ -21,15 +21,18 @@ class ItemCategory (models.Model):
         (   'other'        ,    'Other Items'       ),
     ]
 
+    # Add name for the storage item inside the category
+    # Contoh : Iphone, Nike Shoe ...
     name = models.CharField
     (
-        max_length = 100,
+        max_length = 100,                 # Name can have 100 characters
     )
 
+    # Add description for the storage item **maybe can used inside create post
     description = models.TextField
     (
         max_length = 10000,
-        blank=True,
+        blank = True,                     # Description can be empty
     )
 
     category = models.CharField
@@ -38,5 +41,7 @@ class ItemCategory (models.Model):
         choices = CATEGORY_CHOICES,
     )
 
+    # Display name of the item on the admin page
+    # Contoh : √ Laptop ✗ Item Obeject 1
     def __str__(self):
         return self.name
