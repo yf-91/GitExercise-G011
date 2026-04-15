@@ -7,4 +7,4 @@ class Feedback(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        Return f"Feedback {self.id} - {self.created_at}"
+        return f"Feedback {self.id} - {self.created_at}"
