@@ -82,8 +82,30 @@ class LostPost (models.Model):
         blank = True,                           # form can be empty
     )
 
-    description = models.TextField()
+    lost_description = models.TextField()
 
     def __str__(self):
         return self.lost_title
 
+class FoundPost (models.Model):
+    
+    found_title = models.CharField(
+        max_length = 100,
+    )
+
+    found_datetime = models.DateTimeField()
+
+    found_category = models.CharField(
+        max_length = 100,
+        choices = ItemCategory.CATEGORY_CHOICES,
+    )
+
+    found_location = models.ForeignKey(
+        MMULocation,
+        on_delete = models.CASCADE,
+    )
+
+    found_description = models.TextField()
+
+    def __str__(self):
+        return self.found_title
