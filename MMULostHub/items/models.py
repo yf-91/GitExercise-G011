@@ -62,3 +62,28 @@ class MMULocation (models.Model):
     def __str__(self):
         return self.location_name
     
+class LostPost (models.Model):
+    
+    lost_title = models.CharField(
+        max_length = 100,
+    )
+
+    lost_datetime = models.DateTimeField()
+
+    lost_category = models.CharField(
+        max_length = 100,
+        choices = ItemCategory.CATEGORY_CHOICES,
+    )
+
+    lost_location = models.ForeignKey(
+        MMULocation,
+        on_delete = models.CASCADE,
+        null = True,                            # database can be empty
+        blank = True,                           # form can be empty
+    )
+
+    description = models.TextField()
+
+    def __str__(self):
+        return self.lost_title
+
