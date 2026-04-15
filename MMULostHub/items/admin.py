@@ -1,4 +1,5 @@
 from django.contrib import admin
-from .models import ItemCategory
+from .models import post, MMULocation
 
-admin.site.register(ItemCategory)
+admin.site.register(post)
+admin.site.register(MMULocation)

@@ -1,15 +1,19 @@
-from .models import ItemCategory
-from .models import MMULocation
+from .models import post
 
-def createItem (itemName, description, itemCategory):
-    return ItemCategory.objects.create(
-        itemName = itemName,
-        description = description,
-        itemCategory = itemCategory,
+def create_post(post_data):
+
+    post_type = post_data.get("post_type")
+    location = post_data.get("location")
+
+    if post_type == "found" and not location:
+        raise ValueError("Location is required for found posts")
+
+    post = post.objects.create(
+        post_type = post_type,
+        post_datetime = post_data.get("post_datetime"),
+        post_itemcategory = post_data.get("post_itemcategory"),
+        post_location = location,
+        post_description = post_data.get("post_description")
     )
 
-def getAllItems ():
-    return ItemCategory.objects.all()
-
-def getItem_by_category(itemCategory):
-    return ItemCategory.objects.filter(itemCategory = itemCategory)
+    return post
