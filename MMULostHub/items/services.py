@@ -1,4 +1,5 @@
 from .models import ItemCategory
+from .models import MMULocation
 
 def createItem (itemName, description, itemCategory):
     return ItemCategory.objects.create(

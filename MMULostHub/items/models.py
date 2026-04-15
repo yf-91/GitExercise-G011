@@ -27,12 +27,6 @@ class ItemCategory (models.Model):
         max_length = 100,                 # Name can have 100 characters
     )
 
-    # Add description for the storage item **maybe can used inside create post
-    description = models.TextField(
-        max_length = 10000,
-        blank = True,                     # Description can be empty
-    )
-
     itemCategory = models.CharField(
         max_length = 100,
         choices = CATEGORY_CHOICES,
@@ -43,49 +37,28 @@ class ItemCategory (models.Model):
     def __str__(self):
         return self.itemName
 
-class MMULocation (models.Model):
 
-    LOCATION_CHOICES = [
-        ('fci', 'FCI Building'),
-        ('fom', 'FOM Building'),
-        ('faie', 'FAIE Building'),
-        ('fcm', 'FCM Building'),
-        ('clc', 'CLC'),
-        ('mph', 'MPH / Annex Hall'),
-        ('misri-plaza', 'Misri Plaza'),
-        ('rimbun-ilmu', 'Rimbun Ilmu'),
-        ('dtc', 'DTC'),
-        ('chancelery', 'MMU Chancelery'),
-        ('stad', 'STAD Building'),
-        ('ips', 'IPS Building'),
-        ('library', 'Library'),
-        ('bakery', 'Bakery'),
-        ('haji-tapah', 'Haji Tapah'),
-        ('starbees', 'Starbees'),
-        ('dapo-sahang', 'Dapo Sahang'),
-        ('hb1', 'Hostel Block 1'),
-        ('hb2', 'Hostel Block 2'),
-        ('hb3', 'Hostel Block 3'),
-        ('hb4', 'Hostel Block 4'),
-        ('entrance-A', 'MMU Entrance A'),
-        ('entrance-B', 'MMU Entrance B'),
-        ('bustop-A', 'Bustop Entrance A'),
-        ('bustop-B', 'Bustop Entrance B'),
-        ('cyberpark', 'MMU Cyberpark'),
-        ('stadium', 'Stadium MMU'),
-        ('isc', 'Indoor Sports Centre'),
-        ('footbal', 'Football Field'),
-        ('rugby', 'Rugby Field'),
-        ('swimming', 'Swimming Pool'),
-        ('tennis', 'Tennis Court'),
-        ('basketball', 'Basketball Court'),
-        ('volleyball', 'Volleyball Court'),
-        ('archery', 'Archery'),
-        ('edc', "EDC Building"),
-        ('fmd', 'FMD Building'),
-        ('masjid', 'Masjid'),
-        ('nea', 'NEA'),
-        ('eaa', 'EAA'),
-        ('eab', 'EAB'),
-        ('guest house', 'MMUGuest House'),
-    ]
+class MMULocation (models.Model):
+    
+    location_code = models.CharField(                   # system or url(weblink) will see
+        max_length = 50,
+        unique = True,
+    )
+
+    location_name = models.CharField(                   # user see
+        max_length = 100,
+    )
+
+    latitude = models.FloatField(                       # coordinates (lat , long)
+        null = True,
+        blank = True,
+    )
+
+    longitude = models.FloatField(
+        null = True,
+        blank = True,
+    )
+
+    def __str__(self):
+        return self.location_name
+    
