@@ -9,13 +9,15 @@
 <body>
     <div class="whole-page">
         <header>
-            <img src="{% static 'images/MMU Logo.png' %}" alt="MMU Logo" class="mmu-logo">
+            <a href="{% url 'beginning' %}">
+                <img src="{% static 'images/MMU Logo' %}" alt="MMU Logo" class="mmu-logo">
+            </a>
         </header>
 
         <div class="content">
             <div class="banner">
                 <div class="web-logo">
-                    <img src="{% static 'images/Web Logo.png' %}" alt="MMU Lost Hub Logo" class="losthub-logo">
+                    <img src="{% static 'images/Web Logo' %}" alt="MMU Lost Hub Logo" class="losthub-logo">
                 </div>
 
                 <div class="slogan">
@@ -71,6 +73,9 @@
 
                     <p>Already have an account?</p>
                     <a href="{% url 'user-login' %}">Login Here</a>
+
+                    <p>Are you an admin?</p>
+                    <a href="{% url 'admin-login' %}">Login as Admin</a>
                 </div>
             </div>
         </div>
