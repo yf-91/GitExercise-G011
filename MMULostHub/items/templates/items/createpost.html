@@ -20,15 +20,15 @@
 
     <label>Category:</label>
     <select name="post_itemcategory">
-        <option value="electronics">Electronics</option>
-        <option value="wallet">Wallet</option>
-        <option value="bag">Bag</option>
+        {% for value, label in category_choices %}
+            <option value="{{ value }}">{{ label }}</option>
+        {% endfor %}
     </select>
     <br><br>
 
     <label>Location:</label>
     <select name="post_location">
-        <option value="">-- None --</option>
+        <option value=""> I don't know where TwT </option>
         {% for loc in locations %}
             <option value="{{ loc.id }}">{{ loc.location_name }}</option>
         {% endfor %}
