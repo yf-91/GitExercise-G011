@@ -8,7 +8,7 @@ def mainPage(request):
     })
     
 
-from django.shortcuts import redir
+from django.shortcuts import redirect
 from .models import MMULocation
 from .services import create_post
 
