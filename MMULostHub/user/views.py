@@ -53,7 +53,6 @@ def user_login(request):
     return render(request, 'user/user-login.html')
 
 def admin_login(request):
-    return render(request, 'user/admin-login.html')
 
 def register(request):
     if request.method == 'POST':
