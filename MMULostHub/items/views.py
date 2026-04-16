@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post
+from .models import CATEGORY_CHOICES, Post
 
 def mainPage(request):
     post_box = Post.objects.all().order_by('-id')  # 最新在上
@@ -12,6 +12,7 @@ from django.shortcuts import redirect
 from .models import MMULocation
 from .services import create_post
 
+
 def create_post_view(request):
     if request.method == "POST":
         try:
@@ -22,16 +23,17 @@ def create_post_view(request):
                 "post_location": request.POST.get("post_location") or None,
                 "post_description": request.POST.get("post_description"),
                 "post_user": request.user
-            })
-
+        }, request.user)
             return redirect("mainPage")
 
         except ValueError as e:
             return render(request, "items/createpost.html", {
                 "error": str(e),
+                "category_choices": CATEGORY_CHOICES,
                 "locations": MMULocation.objects.all()
             })
-
+        
     return render(request, "items/createpost.html", {
+        "category_choices": CATEGORY_CHOICES,
         "locations": MMULocation.objects.all()
     })
