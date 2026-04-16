@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'items',
     'user',
     'report',
+    'items.apps.ItemsConfig',
 
 ]
 
