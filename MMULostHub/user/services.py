@@ -8,4 +8,4 @@ def create_user_account(name, email, password):
         email=email,
         password=password
     )
-    Profile.objects.create(user=user)
+    return user
