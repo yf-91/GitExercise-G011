@@ -22,7 +22,6 @@ def create_post_view(request):
                 "post_itemcategory": request.POST.get("post_itemcategory"),
                 "post_location": request.POST.get("post_location") or None,
                 "post_description": request.POST.get("post_description"),
-                "post_user": request.user
         }, request.user)
             return redirect("mainPage")
 
