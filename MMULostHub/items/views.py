@@ -1,7 +1,11 @@
 from django.shortcuts import render
+from .models import post
 
 def mainPage(request):
-    return render(request, 'items/mainpage.html')\
+    post_box = post.objects.all().order_by('-id')  # 最新在上
+    return render(request, 'items/mainPage.html', {
+        'posts': post_box
+    })
     
 
 from django.shortcuts import redirect
@@ -19,14 +23,14 @@ def create_post_view(request):
                 "post_description": request.POST.get("post_description"),
             })
 
-            return redirect("/")
+            return redirect("mainPage")
 
         except ValueError as e:
-            return render(request, "create_post.html", {
+            return render(request, "items/createpost.html", {
                 "error": str(e),
                 "locations": MMULocation.objects.all()
             })
 
-    return render(request, "createpost.html", {
+    return render(request, "items/createpost.html", {
         "locations": MMULocation.objects.all()
     })

@@ -35,16 +35,30 @@
             <button type="submit"> Search </button>
         </div>
 
-        <div class="posts">
-            <p>
-                Post will be shown here
-            </p>
+
+        <!-- 🔥 这里插入 post view -->
+        <div class="post-list">
+            {% for post in posts %}
+                <div class="post-card">
+                    <p><strong>Type:</strong> {{ post.post_type }}</p>
+                    <p><strong>Category:</strong> {{ post.post_itemcategory }}</p>
+                    <p><strong>Location:</strong> {{ post.post_location }}</p>
+                    <p><strong>Description:</strong> {{ post.post_description }}</p>
+                    <hr>
+                </div>
+            {% empty %}
+                <p>No posts yet</p>
+            {% endfor %}
         </div>
 
+
+
         <div class="create-post">
-            <button type="button">
-                Create Post Button
-            </button>
+            <a href="{% url 'create_post_view' %}">
+                <button type="button">
+                    Create Post Button
+                </button>
+            </a>
         </div>
 
         <footer>
