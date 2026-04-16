@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # yf-storage (Items Categories)
 
@@ -58,6 +59,13 @@ class post (models.Model):
     )
 
     post_description = models.TextField()
+
+    post_user = models.ForeignKey(
+    User,
+    on_delete=models.CASCADE,
+    null=True,
+    blank=True
+)
 
     def __str__(self):
         return self.post_title
