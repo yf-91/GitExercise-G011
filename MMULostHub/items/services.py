@@ -1,4 +1,4 @@
-from .models import Post
+from .models import MMULocation, Post
 
 def create_post(post_data,user):
 
@@ -14,7 +14,7 @@ def create_post(post_data,user):
         post_type=post_type,
         post_datetime = post_data.get("post_datetime"),
         post_itemcategory=post_data.get("post_itemcategory"),
-        post_location_id=post_data.get("post_location"),
+        post_location=MMULocation.objects.get(id=post_data.get("post_location")),
         post_description=post_data.get("post_description"),
 )
 
