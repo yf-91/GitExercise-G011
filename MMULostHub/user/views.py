@@ -10,7 +10,6 @@ def beginning(request):
 
 def user_login(request):
 
-    
     if request.method == 'POST':
         email = (request.POST.get('email') or '').strip().lower()
         password = request.POST.get('password') or ''
@@ -51,6 +50,32 @@ def user_login(request):
         return redirect('beginning')
     
     return render(request, 'user/user-login.html')
+
+def admin_login(request):
+    if request.method == 'POST':
+        email = (request.POST.get('email') or '').strip().lower()
+        password = request.POST.get('password') or ''
+
+        login_error = ""
+
+        user = authenticate(request, username=email, password=password)
+
+        if user is None:
+            login_error = "Invalid email or password."
+            return render(request, 'user/admin-login.html', {
+                'login_error': login_error
+            })
+
+        if not user.is_staff:
+            login_error = "You are not authorized as admin."
+            return render(request, 'user/admin-login.html', {
+                'login_error': login_error
+            })
+
+        login(request, user)
+        return redirect('mainPage')
+
+    return render(request, 'user/admin-login.html')
 
 def register(request):
     if request.method == 'POST':
