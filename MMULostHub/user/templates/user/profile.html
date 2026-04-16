@@ -29,10 +29,10 @@
 <h2>Found Items</h2>
 {% for post in found_posts %}
     <div>
-        <p><strong>Type:</strong> {{ post.Post_type }}</p>
-        <p><strong>Category:</strong> {{ post.Post_itemcategory }}</p>
-        <p><strong>Location:</strong> {{ post.Post_location }}</p>
-        <p><strong>Description:</strong> {{ post.Post_description }}</p>
+        <p><strong>Type:</strong> {{ post.post_type }}</p>
+        <p><strong>Category:</strong> {{ post.post_itemcategory }}</p>
+        <p><strong>Location:</strong> {{ post.post_location }}</p>
+        <p><strong>Description:</strong> {{ post.post_description }}</p>
     </div>
 {% empty %}
     <p>No found posts</p>
