@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from .models import post
+from .models import Post
 
 def mainPage(request):
-    post_box = post.objects.all().order_by('-id')  # 最新在上
+    post_box = Post.objects.all().order_by('-id')  # 最新在上
     return render(request, 'items/mainPage.html', {
         'posts': post_box
     })
@@ -21,6 +21,7 @@ def create_post_view(request):
                 "post_itemcategory": request.POST.get("post_itemcategory"),
                 "post_location": request.POST.get("post_location") or None,
                 "post_description": request.POST.get("post_description"),
+                "post_user": request.user
             })
 
             return redirect("mainPage")

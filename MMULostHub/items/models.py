@@ -39,7 +39,7 @@ class MMULocation (models.Model):
 
 
 # Lost and Found Post Model  
-class post (models.Model):
+class Post(models.Model):
     
     post_type = models.CharField(choices=[('lost','Lost'),('found','Found')])
 
@@ -68,4 +68,4 @@ class post (models.Model):
 )
 
     def __str__(self):
-        return self.post_title
+        return self.Post_title

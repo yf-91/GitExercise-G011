@@ -1,4 +1,4 @@
-from .models import post
+from .models import Post
 
 def create_post(post_data):
 
@@ -10,12 +10,13 @@ def create_post(post_data):
 
     
 
-    new_post = post.objects.create(
+    new_post = Post.objects.create(
         post_type=post_type,
         post_datetime = post_data.get("post_datetime"),
         post_itemcategory=post_data.get("post_itemcategory"),
         post_location_id=post_data.get("post_location"),
-        post_description=post_data.get("post_description")
+        post_description=post_data.get("post_description"),
+        post_user=post_data.get("post_user")
 )
 
     return new_post
