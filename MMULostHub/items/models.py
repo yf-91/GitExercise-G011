@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # yf-storage (Items Categories)
 
@@ -49,15 +50,22 @@ class MMULocation (models.Model):
 
 # Lost and Found Post Model  
 class Post (models.Model):
+
+    post_user = models.ForeignKey(
+        User,
+        on_delete = models.CASCADE,
+    )
     
-    post_type = models.CharField(choices=[('lost','Lost'),('found','Found')])
+    post_type = models.CharField(
+        choices = [ ('lost','Lost') , ('found','Found') ]
+    )
 
     post_datetime = models.DateTimeField()
 
     # Dropdown menu to choose category
     post_itemcategory = models.CharField(
         max_length = 100,
-        choices = ItemCategory.CATEGORY_CHOICES,
+        choices = CATEGORY_CHOICES,
     )
 
     post_location = models.ForeignKey(
@@ -69,5 +77,7 @@ class Post (models.Model):
 
     post_description = models.TextField()
 
+    # Display at admin page (Lost Post: Wallet)
     def __str__(self):
-        return self.post_title
+        return f"{self.post_type}: {self.post_itemcategory}"
+    
