@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <title> 
+            MMU Lost Hub 
+        </title>
+    </head>
+
+    <body>
+        <header>
+            <h1>
+                MMU Logo
+            </h1>
+            <h1>
+                Lost Hub Logo
+            </h1>
+        </header>
+
+        <div class="dropdown-nav">
+            <nav>
+                Menu
+            </nav>
+            <div class="dropdown-content">
+                <a href="{% url 'mainPage' %}"> Home </a>
+                <a href="#"> Lost Post </a>                 <!-- yt lost post link -->
+                <a href="#"> Found Post </a>                <!-- yt found post link -->
+                <a href="#"> Profile </a>                   <!-- yt profile link -->
+                <a href="#"> Feedback/Report </a>           <!-- zinc feedback link -->
+                <a href="#"> Logout </a>                    <!-- yt logout link -->
+            </div>
+        </div>
+
+        <div class="search-bar">                                        <!-- after need to be changed when starting to do search feature -->
+            <input type="text" placeholder="Search for items...">
+            <button type="submit"> Search </button>
+        </div>
+
+
+        <!-- 🔥 这里插入 post view -->
+        <div class="post-list">
+            {% for post in posts %}
+                <div class="post-card">
+                    <p><strong>Type:</strong> {{ post.post_type }}</p>
+                    <p><strong>Category:</strong> {{ post.post_itemcategory }}</p>
+                    <p><strong>Location:</strong> {{ post.post_location }}</p>
+                    <p><strong>Description:</strong> {{ post.post_description }}</p>
+                    <hr>
+                </div>
+            {% empty %}
+                <p>No posts yet</p>
+            {% endfor %}
+        </div>
+
+
+
+        <div class="create-post">
+            <a href="{% url 'create_post_view' %}">
+                <button type="button">
+                    Create Post Button
+                </button>
+            </a>
+        </div>
+
+        <footer>
+            &copy; 2026 MMU Lost Hub. All rights reserved.
+        </footer>
+
+    </body>
+</html>
