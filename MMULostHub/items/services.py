@@ -15,7 +15,8 @@ def create_post(post_data,user):
         post_datetime = post_data.get("post_datetime"),
         post_itemcategory=post_data.get("post_itemcategory"),
         post_location_id=post_data.get("post_location"),
-        post_description=post_data.get("post_description")
+        post_description=post_data.get("post_description"),
+        post_user=post_data.get("post_user")
 )
 
     return new_post
