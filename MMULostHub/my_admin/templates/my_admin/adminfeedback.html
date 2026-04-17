@@ -36,7 +36,7 @@
         <div class="post-list">
             {% for feedback in feedback %}
             <div class="feedback-card">
-                <p><strong>User:</strong>{{ feedback.id }}</p>
+                <p><strong>User:</strong>{{ feedback.user.username |defult:"Anonymous" }}</p>
                 <p><strong>Content:</strong>{{ feedback.comments }}</p>
                 <p><strong>Image:</strong><br>
                     {% if feedback.image %}
