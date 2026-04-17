@@ -19,10 +19,14 @@ from django.urls import path, include
 from my_admin import views
 from django.conf import settings
 from django.conf.urls.static import static
+from user import views
 
 urlpatterns = [
+   path('', views.beginning, name='beginning'),
     path('admin/', admin.site.urls),
+    path('items/', include('items.urls')),
     path('report/',include('report.urls')),
+    path('user/', include('user.urls')),
     path('adminfeedback/', views.admin_feedback_view, name='admin_feedback'),
 ]
 
