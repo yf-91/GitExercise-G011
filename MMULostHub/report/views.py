@@ -7,7 +7,7 @@ def feedback_view(request):
         image = request.FILES.get('image-upload') 
 
         #call service function
-        create_feedback(comments=comments, image=image)
+        create_feedback(comments=comments, image=image, user=request.user)
 
         return render(request, 'report/feedback.html', {'success': True})
     

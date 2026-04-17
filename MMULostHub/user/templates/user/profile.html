@@ -12,6 +12,20 @@
             <img src="{% static 'images/MMU Logo' %}" alt="MMU Logo" class="mmu-logo">
         </header>
 
+        <div class="dropdown-nav">
+            <nav>
+                Menu
+            </nav>
+            <div class="dropdown-content">
+                <a href="{% url 'mainPage' %}"> Home </a>
+                <a href="#"> Lost Post </a>                 <!-- yt lost post link -->
+                <a href="#"> Found Post </a>                <!-- yt found post link -->
+                <a href="{% url 'profile' %}"> Profile </a>                   <!-- yt profile link -->
+                <a href="{% url 'feedback' %}"> Feedback/Report </a>           <!-- zinc feedback link -->
+                <a href="{% url 'logout' %}">Logout</a>                  <!-- yt logout link -->
+            </div>
+        </div>
+
         <div class="profile-info">
             <h1>My Profile</h1>
 
@@ -52,6 +66,7 @@
                 <p><b>Description:</b> {{ post.post_description }}</p>
                 <p><b>Location:</b> {{ post.post_location }}</p>
                 <p><b>Date:</b> {{ post.post_datetime }}</p>
+                <p>————————————————————————————————————————————————————————</p>
             </div>
         {% empty %}
             <p>No lost posts</p>
@@ -60,10 +75,11 @@
         <h2>Found Items</h2>
         {% for post in found_posts %}
             <div>
-                <p><strong>Type:</strong> {{ post.post_type }}</p>
-                <p><strong>Category:</strong> {{ post.post_itemcategory }}</p>
-                <p><strong>Location:</strong> {{ post.post_location }}</p>
-                <p><strong>Description:</strong> {{ post.post_description }}</p>
+                <p><b>Category:</b> {{ post.post_itemcategory }}</p>
+                <p><b>Description:</b> {{ post.post_description }}</p>
+                <p><b>Location:</b> {{ post.post_location }}</p>
+                <p><b>Date:</b> {{ post.post_datetime }}</p>
+                <p>————————————————————————————————————————————————————————</p>
             </div>
         {% empty %}
             <p>No found posts</p>
