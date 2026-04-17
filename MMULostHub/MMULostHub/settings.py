@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'user',
     'report',
+<<<<<<< HEAD
     'my_admin',
+=======
+    'items.apps.ItemsConfig',
+>>>>>>> f1711a46efc951dfd0d5fd4cce6cd18bcf158e4c
 
 ]
 
@@ -107,11 +112,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Kuala_Lumpur'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -124,3 +129,4 @@ import os
 #directory for storing user-uploaded files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
