@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from  .services import create_feedback
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def feedback_view(request):
     if request.method == "POST":
         comments = request.POST.get('comments')
