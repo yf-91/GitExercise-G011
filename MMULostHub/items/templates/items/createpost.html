@@ -10,9 +10,9 @@
     <body>
         <header>
             {% load static %}
-            <img src="{% static 'user/images/MMU Logo.png' %}" alt="MMU Logo" class = "mmu-logo">
+            <img src="{% static 'user/static/images/MMU Logo.png' %}" alt="MMU Logo" class = "mmu-logo">
 
-            <img src="{% static 'user/images/Web Logo.png' %}" alt="MMU Lost Hub Logo" class="losthub-logo">
+            <img src="{% static 'user/static/images/Web Logo.png' %}" alt="MMU Lost Hub Logo" class="losthub-logo">
         </header>
 
         <div class = "dropdown-nav">
@@ -46,16 +46,16 @@
 
                 <br><br>
 
-                <label> Item Name: </label>
+                <label> Date Time: </label>
                 <input type = "datetime-local" name = "post_datetime">
 
-                <br><br>
+                <br><br> 
 
                 <label> Item Category: </label>
-                <select name = "post-itemcategory">
+                <select name = "post_itemcategory">
                     <option value = ""> Select Category </option>
 
-                    {% for value, label in item_categories %} <!-- (value, label) mcm inside model-->
+                    {% for value, label in item_categories %}                       <!-- (value, label) mcm inside model-->
                         <option value = "{{ value }}"> {{ label }} </option>
                     {% endfor %}
                 </select>
@@ -63,15 +63,15 @@
                 <br><br>
 
                 <label> Location: </label>
-                <select name = "item-location">
-                    <option value = ""> Select Location </option>
+                <select name = "post_location">
+                    <option value = " "> Select Location </option>
 
                 </select>
 
                 <br><br>
 
                 <label> Item Description: </label>
-                <textarea name = "item-description" placeholder = " Describe the item or give it a name ^-^ "></textarea>
+                <textarea name = "post_description" placeholder = " Describe the item or give it a name ^-^ "></textarea>
 
                 <br><br>
 

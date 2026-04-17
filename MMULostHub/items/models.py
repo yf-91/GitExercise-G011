@@ -75,4 +75,4 @@ class Post (models.Model):
     post_description = models.TextField()
 
     def __str__(self):
-        return self.post_title
+        return f"{self.post_type}: {self.post_itemcategory}"

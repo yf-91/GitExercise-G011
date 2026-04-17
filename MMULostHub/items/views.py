@@ -22,11 +22,11 @@ def createPost(request):
         except ValueError as e:                                 # e = error msg from service.py
             return render(request, 'items/createpost.html', {
                 'error': str(e),                                 # e string and display in html
-                'item-categories': CATEGORY_CHOICES,
+                'item_categories': CATEGORY_CHOICES,
                 'locations': MMULocation.objects.all(),
             })
         
     return render(request, 'items/createpost.html', {
-        'item-categories': CATEGORY_CHOICES,
+        'item_categories': CATEGORY_CHOICES,
         'locations': MMULocation.objects.all(),
     })
