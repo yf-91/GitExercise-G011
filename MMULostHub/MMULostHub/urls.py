@@ -16,7 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from my_admin import views
 from django.conf import settings
 from django.conf.urls.static import static
 from user import views
@@ -27,7 +26,7 @@ urlpatterns = [
     path('items/', include('items.urls')),
     path('report/',include('report.urls')),
     path('user/', include('user.urls')),
-    path('adminfeedback/', views.admin_feedback_view, name='admin_feedback'),
+    path('adminfeedback/', include('my_admin.urls')),
 ]
 
 if settings.DEBUG:
