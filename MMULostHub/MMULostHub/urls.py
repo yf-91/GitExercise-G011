@@ -20,4 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('report/',include('report.urls')),
+    path('adminfeedback/', views.admin_feedback_view, name='admin_feedback'),
 ]
