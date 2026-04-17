@@ -19,6 +19,7 @@ from django.urls import path, include
 from my_admin import views
 from django.conf import settings
 from django.conf.urls.static import static
+from user import views
 
 urlpatterns = [
    path('', views.beginning, name='beginning'),
