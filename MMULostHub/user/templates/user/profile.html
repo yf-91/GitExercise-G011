@@ -12,28 +12,62 @@
             <img src="{% static 'images/MMU Logo' %}" alt="MMU Logo" class="mmu-logo">
         </header>
 
-<h1>My Profile</h1>
+        <div class="profile-info">
+            <h1>My Profile</h1>
 
-<h2>Lost Items</h2>
-{% for post in lost_posts %}
-    <div>
-        <p><b>Category:</b> {{ post.post_itemcategory }}</p>
-        <p><b>Description:</b> {{ post.post_description }}</p>
-        <p><b>Location:</b> {{ post.post_location }}</p>
-        <p><b>Date:</b> {{ post.post_datetime }}</p>
-    </div>
-{% empty %}
-    <p>No lost posts</p>
-{% endfor %}
+            <p><b>Name:</b> {{ user.first_name }}</p>
+            <p><b>Email:</b> {{ user.email }}</p>
+        </div>
 
-<h2>Found Items</h2>
-{% for post in found_posts %}
-    <div>
-        <p><strong>Type:</strong> {{ post.post_type }}</p>
-        <p><strong>Category:</strong> {{ post.post_itemcategory }}</p>
-        <p><strong>Location:</strong> {{ post.post_location }}</p>
-        <p><strong>Description:</strong> {{ post.post_description }}</p>
+        <h2>Bio</h2>
+
+        <p id="bioText">{{ profile.bio }}</p>
+
+        <button onclick="showEdit()">Edit</button>
+
+        <form id="bioForm" method="POST" action="{% url 'update_bio' %}" style="display:none;">
+            {% csrf_token %}
+            <textarea name="bio" rows="4" cols="50">{{ profile.bio }}</textarea>
+            <br>
+            <button type="submit">Save</button>
+            <button type="button" onclick="hideEdit()">Cancel</button>
+        </form>
+
+        <script>
+            function showEdit() {
+                document.getElementById("bioForm").style.display = "block";
+                document.getElementById("bioText").style.display = "none";
+            }
+
+            function hideEdit() {
+                document.getElementById("bioForm").style.display = "none";
+                document.getElementById("bioText").style.display = "block";
+            }
+        </script>
+
+        <h2>Lost Items</h2>
+        {% for post in lost_posts %}
+            <div>
+                <p><b>Category:</b> {{ post.post_itemcategory }}</p>
+                <p><b>Description:</b> {{ post.post_description }}</p>
+                <p><b>Location:</b> {{ post.post_location }}</p>
+                <p><b>Date:</b> {{ post.post_datetime }}</p>
+            </div>
+        {% empty %}
+            <p>No lost posts</p>
+        {% endfor %}
+
+        <h2>Found Items</h2>
+        {% for post in found_posts %}
+            <div>
+                <p><strong>Type:</strong> {{ post.post_type }}</p>
+                <p><strong>Category:</strong> {{ post.post_itemcategory }}</p>
+                <p><strong>Location:</strong> {{ post.post_location }}</p>
+                <p><strong>Description:</strong> {{ post.post_description }}</p>
+            </div>
+        {% empty %}
+            <p>No found posts</p>
+        {% endfor %}
     </div>
-{% empty %}
-    <p>No found posts</p>
-{% endfor %}
+</body>
+</html>
