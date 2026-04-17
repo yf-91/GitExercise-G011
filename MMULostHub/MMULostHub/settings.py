@@ -120,8 +120,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+<<<<<<< HEAD
 import os
 
 #directory for storing user-uploaded files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+=======
+LOGIN_URL = '/user/user-login/'
+LOGIN_REDIRECT_URL = '/user/profile/'
+LOGOUT_REDIRECT_URL = '/user/user-login/'
+>>>>>>> yt-profile
