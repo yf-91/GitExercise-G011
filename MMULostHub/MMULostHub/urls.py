@@ -21,8 +21,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+   path('', views.beginning, name='beginning'),
     path('admin/', admin.site.urls),
+    path('items/', include('items.urls')),
     path('report/',include('report.urls')),
+    path('user/', include('user.urls')),
     path('adminfeedback/', views.admin_feedback_view, name='admin_feedback'),
 ]
 
