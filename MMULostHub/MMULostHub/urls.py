@@ -16,18 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from my_admin import views
+from my_admin import views as admin_views
 from django.conf import settings
 from django.conf.urls.static import static
-from user import views
+from user import views as user_views
 
 urlpatterns = [
-   path('', views.beginning, name='beginning'),
+   path('', user_views.beginning, name='beginning'),
     path('admin/', admin.site.urls),
     path('items/', include('items.urls')),
     path('report/',include('report.urls')),
     path('user/', include('user.urls')),
-    path('adminfeedback/', views.admin_feedback_view, name='admin_feedback'),
+    path('adminfeedback/', admin_views.admin_feedback_view, name='admin_feedback')
+    
 ]
 
 if settings.DEBUG:
