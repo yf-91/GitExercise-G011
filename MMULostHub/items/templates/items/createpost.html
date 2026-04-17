@@ -4,15 +4,15 @@
     <head> 
         <title> 
             MMU Lost Hub
+            {% load static %}
         </title>
     </head>
 
     <body>
         <header>
-            {% load static %}
-            <img src="{% static 'user/static/images/MMU Logo.png' %}" alt="MMU Logo" class = "mmu-logo">
+            <img src="{% static 'images/MMU Logo.png' %}" alt="MMU Logo" class = "mmu-logo">
 
-            <img src="{% static 'user/static/images/Web Logo.png' %}" alt="MMU Lost Hub Logo" class="losthub-logo">
+            <img src="{% static 'images/Web Logo.png' %}" alt="MMU Lost Hub Logo" class="losthub-logo">
         </header>
 
         <div class = "dropdown-nav">
@@ -76,7 +76,9 @@
                 <br><br>
 
                 <button type = "submit">
-                    <a href = "{% url 'mainPage' %}"> Create Post </a>
+                    <a href = "{% url 'mainPage' %}"> 
+                        Create Post 
+                    </a>
                 </button>
 
             </form>
