@@ -36,9 +36,15 @@
         <div class="post-list">
             {% for feedback in feedback %}
             <div class="feedback-card">
-                <p><strong>User:</strong>{{ feedback.user.username }}</p>
-                <p><strong>Content:</strong>{{ feedback.content }}</p>
-                <p><strong>Image:</strong><br><img src="{{ feedback.image_url }}" alt="Feedback Photo" style="max-width: 300px;" </p>
+                <p><strong>User:</strong>{{ feedback.id }}</p>
+                <p><strong>Content:</strong>{{ feedback.comments }}</p>
+                <p><strong>Image:</strong><br>
+                    {% if feedback.image %}
+                    <img src="{{ feedback.image.url }}" alt="Feedback Photo" style="max-width: 300px;">
+                    {% else %}
+                    No Image Provided
+                    {% endif %}
+                </p>
                 <p><strong>Date:</strong>{{ feedback.created_at }}</p>
                 <p><strong>Status:</strong>{{ feedback.status }}</p>
                 <hr>
