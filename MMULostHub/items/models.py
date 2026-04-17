@@ -76,3 +76,5 @@ class Post (models.Model):
 
     def __str__(self):
         return f"{self.post_type}: {self.post_itemcategory}"
+
+

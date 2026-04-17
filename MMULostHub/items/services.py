@@ -19,3 +19,4 @@ def create_post (post_data, user):
     )
 
     return new_post
+
