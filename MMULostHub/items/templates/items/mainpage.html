@@ -18,6 +18,7 @@
             <nav>
                 Menu Button
             </nav>
+            
             <div class="dropdown-content">
                 <a href="{% url 'mainPage' %}"> Home </a>
                 <a href="#"> Lost Post </a>                 <!-- yt lost post link -->
@@ -41,7 +42,9 @@
 
         <div class="create-post">
             <button type="button">
-                Create Post Button
+                <a href="{% url 'createPost' %}"> 
+                    Create Post 
+                </a>
             </button>
         </div>
 
