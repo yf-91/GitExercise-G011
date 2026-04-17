@@ -39,9 +39,17 @@ class MMULocation (models.Model):
 
 
 # Lost and Found Post Model  
-class post (models.Model):
+class Post (models.Model):
+
+    post_user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+    )
     
-    post_type = models.CharField(choices=[('lost','Lost'),('found','Found')])
+    post_type = models.CharField(
+        max_length = 10,
+        choices=[('lost','Lost'),('found','Found')]
+    )
 
     post_datetime = models.DateTimeField()
 
@@ -60,12 +68,5 @@ class post (models.Model):
 
     post_description = models.TextField()
 
-    post_user = models.ForeignKey(
-    User,
-    on_delete=models.CASCADE,
-    null=True,
-    blank=True
-)
-
     def __str__(self):
-        return self.post_title
+        return f"{self.post_type} - {self.post_itemcategory}"

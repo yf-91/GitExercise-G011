@@ -24,9 +24,9 @@
                 <a href="{% url 'mainPage' %}"> Home </a>
                 <a href="#"> Lost Post </a>                 <!-- yt lost post link -->
                 <a href="#"> Found Post </a>                <!-- yt found post link -->
-                <a href="#"> Profile </a>                   <!-- yt profile link -->
+                <a href="{% url 'profile' %}"> Profile </a>                   <!-- yt profile link -->
                 <a href="{% url 'feedback' %}"> Feedback/Report </a>           <!-- zinc feedback link -->
-                <a href="#"> Logout </a>                    <!-- yt logout link -->
+                <a href="{% url 'logout' %}">Logout</a>                  <!-- yt logout link -->
             </div>
         </div>
 
@@ -36,10 +36,11 @@
         </div>
 
 
-        <!-- 🔥 这里插入 post view -->
+        <!-- post view demo -->
         <div class="post-list">
             {% for post in posts %}
                 <div class="post-card">
+                    <p><strong>User:</strong> {{ post.post_user.username }}</p>
                     <p><strong>Type:</strong> {{ post.post_type }}</p>
                     <p><strong>Category:</strong> {{ post.post_itemcategory }}</p>
                     <p><strong>Location:</strong> {{ post.post_location }}</p>

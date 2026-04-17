@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .services import create_user_account
 from django.contrib.auth import authenticate, login, logout
 import re
+from .models import Profile
 
 def beginning(request):
     return render(request, 'user/beginning.html')
@@ -30,13 +31,11 @@ def admin_login(request):
             })
 
         login(request, user)
-        return redirect('mainPage')
+        return redirect('mainpage')
 
     return render(request, 'user/admin-login.html')
 
 def user_login(request):
-
-    
     if request.method == 'POST':
         email = (request.POST.get('email') or '').strip().lower()
         password = request.POST.get('password') or ''
@@ -123,7 +122,9 @@ def register(request):
                 'confirm_password': confirm_password,
             })
 
-        create_user_account(name,email, password)
+        user = create_user_account(name, email, password)
+
+        Profile.objects.create(user=user)
 
         return redirect('user-login')
     
@@ -134,3 +135,49 @@ def check_email(request):
     exists = User.objects.filter(username=email).exists()
 
     return JsonResponse({'exists': exists})
+
+
+from django.shortcuts import redirect
+
+def user_logout(request):
+    logout(request)
+    return redirect('beginning')
+
+
+from django.contrib.auth.decorators import login_required
+from items.models import Post
+
+@login_required
+def profile(request):
+
+    user = request.user
+    profile, created = Profile.objects.get_or_create(user=user)
+
+    lost_posts = Post.objects.filter(
+        post_user=user,
+        post_type='lost'
+    ).order_by('-id')
+
+    found_posts = Post.objects.filter(
+        post_user=user,
+        post_type='found'
+    ).order_by('-id')
+
+    return render(request, 'user/profile.html', {
+        'user': user,
+        'profile': profile,
+        'lost_posts': lost_posts,
+        'found_posts': found_posts
+    })
+
+def update_bio(request):
+    if request.method == 'POST':
+        bio = request.POST.get('bio', '')
+
+        profile, created = Profile.objects.get_or_create(user=request.user)
+        profile.bio = bio
+        profile.save()
+
+        return redirect('profile')
+
+    return redirect('profile')
