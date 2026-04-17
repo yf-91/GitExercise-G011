@@ -8,17 +8,15 @@
 
     <body>
         <header>
-            <h1>
-                MMU Logo
-            </h1>
-            <h1>
-                Lost Hub Logo
-            </h1>
+            {% load static %}
+            <img src="{% static 'user/static/images/MMU Logo.png' %}" alt="MMU Logo" class = "mmu-logo">
+
+            <img src="{% static 'user/static/images/Web Logo.png' %}" alt="MMU Lost Hub Logo" class="losthub-logo">
         </header>
 
         <div class="dropdown-nav">
             <nav>
-                Menu
+                Menu Button
             </nav>
             <div class="dropdown-content">
                 <a href="{% url 'mainPage' %}"> Home </a>
@@ -48,8 +46,11 @@
         </div>
 
         <footer>
-            &copy; 2026 MMU Lost Hub. All rights reserved.
+            <p>
+                © 2026 MMU Lost Hub
+                <br>
+                Designed by: Kho Yee Theng / Tan Yun Fee / Lim Tze Ying
+            </p>
         </footer>
-
     </body>
 </html>
