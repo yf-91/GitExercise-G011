@@ -31,7 +31,7 @@ def admin_login(request):
             })
 
         login(request, user)
-        return redirect('mainpage')
+        return redirect('my_admin')
 
     return render(request, 'user/admin-login.html')
 
