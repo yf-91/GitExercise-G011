@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'report',
+    'my_admin',
     'items.apps.ItemsConfig',
 
 ]
